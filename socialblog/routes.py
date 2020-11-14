@@ -1,4 +1,5 @@
 import os
+import json
 import secrets
 from PIL import Image
 from flask import render_template, url_for, flash, redirect, request, abort
@@ -11,7 +12,9 @@ from flask_login import login_user, current_user, logout_user, login_required
 @app.route('/')
 @app.route('/home')
 def home():
-    posts = Post.query.all()
+    page = request.args.get('page', 1, type=int)
+    posts = Post.query.order_by(
+        Post.date_posted.desc()).paginate(page=page, per_page=5)
     return render_template('home.html', posts=posts)
 
 
@@ -150,4 +153,29 @@ def delete_post(post_id):
     db.session.delete(post)
     db.session.commit()
     flash('Your post has been deleted!', 'success')
+    return redirect(url_for('home'))
+
+
+@app.route("/user/<string:username>")
+def user_posts(username):
+    page = request.args.get('page', 1, type=int)
+    user = User.query.filter_by(username=username).first_or_404()
+    posts = Post.query.filter_by(author=user)\
+        .order_by(Post.date_posted.desc())\
+        .paginate(page=page, per_page=5)
+    return render_template('user_posts.html', posts=posts, user=user)
+
+
+@app.route("/debug_add_posts")
+def debug_add_post():
+    json_path = os.path.join(app.root_path, 'static', 'posts.json')
+    with open(json_path) as json_file:
+        data = json.load(json_file)
+        for post_data in data:
+            author = User.query.get(post_data['user_id'])
+            post = Post(title=post_data['title'],
+                        content=post_data['content'], author=author)
+            db.session.add(post)
+            db.session.commit()
+    flash("Posts have been added!", "success")
     return redirect(url_for('home'))
