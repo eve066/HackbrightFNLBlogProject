@@ -166,6 +166,22 @@ def user_posts(username):
     return render_template('user_posts.html', posts=posts, user=user)
 
 
+@app.route('/upcoming_events')
+def upcoming_events():
+    page = request.args.get('page', 1, type=int)
+    posts = Post.query.order_by(
+        Post.date_posted.desc()).paginate(page=page, per_page=5)
+    return render_template('upcoming_events.html', posts=posts)
+
+
+@app.route('/articles')
+def articles():
+    page = request.args.get('page', 1, type=int)
+    posts = Post.query.order_by(
+        Post.date_posted.desc()).paginate(page=page, per_page=5)
+    return render_template('articles.html', posts=posts)
+
+
 @app.route("/debug_add_posts")
 def debug_add_post():
     json_path = os.path.join(app.root_path, 'static', 'posts.json')
