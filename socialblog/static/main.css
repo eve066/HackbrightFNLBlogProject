@@ -1,5 +1,5 @@
 body {
-  background: #ececf9;
+  background: #00001a;
   color: #333333;
   margin-top: 5rem;
 }
@@ -10,11 +10,11 @@ h1, h2, h3, h4, h5, h6 {
 
 
 .bg-steel {
-  background-color: #333399;
+  background-color: #ff751a;
 }
 
 .site-header .navbar-nav .nav-link {
-  color: #cbd5db;
+  color: #ffffff;
 }
 
 .site-header .navbar-nav .nav-link:hover {
