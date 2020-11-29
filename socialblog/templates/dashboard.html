@@ -15,10 +15,11 @@
     <title>Dashboard</title>
 </head>
 
-<body class="bg-dark p-5">
+<body class="bg-light m-4 p-4">
+    <h1 style="color: white"> User's Dashboard</h1>
     <div class="row">
         <div class="col-md-4">
-            <div class="card">
+            <div class=" mb-3 card">
                 <div class="card-body">
                     <h2>User Logins</h2>
                     <hr>
@@ -29,18 +30,18 @@
         <div class="col-md-4">
             <div class="card">
                 <div class="card-body">
-                    <h2>Posts</h2>
+                    <h2>New vs Previous Posts</h2>
                     <hr>
-                    <canvas id="barchart"></canvas>
+                    <canvas id="piechart"></canvas>
                 </div>
             </div>
         </div><br>
         <div class="col-md-4">
             <div class="card">
                 <div class="card-body">
-                    <h2>Articles Posted</h2>
+                    <h2>User Posts</h2>
                     <hr>
-                    <canvas id="piechart"></canvas>
+                    <canvas id="barchart"></canvas>
                 </div>
             </div>
         </div><br>
@@ -52,6 +53,15 @@
                     <canvas id="barchart2"></canvas>
                 </div>
             </div>
+        </div><br>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h2>New vs Returning Users</h2>
+                    <hr>
+                    <canvas id="piechart2"></canvas>
+                </div>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="card">
@@ -59,15 +69,6 @@
                     <h2>Post Views</h2>
                     <hr>
                     <canvas id="linechart2"></canvas>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card">
-                <div class="card-body">
-                    <h2>Upcoming Events Posts</h2>
-                    <hr>
-                    <canvas id="piechart2"></canvas>
                 </div>
             </div>
         </div>
@@ -87,7 +88,7 @@
             data: {
                 labels: ['Jan', 'Feb', 'Ma', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
                 datasets: [{
-                    label: 'User Login Totals',
+                    label: 'User Login',
                     backgroundColor: 'rgb(51, 153, 255)',
                     borderColor: 'rgb(51, 153, 255)',
                     data: [0, 10, 5, 2, 20, 30, 40, 45, 30, 55, 60, 65]
@@ -107,9 +108,9 @@
 
             // The data for our dataset
             data: {
-                labels: ['New', 'Old'],
+                labels: ['New', 'Previous'],
                 datasets: [{
-                    label: 'User Login Totals',
+                    label: 'New vs Previous Posts',
                     backgroundColor: ['blue', 'aqua'],
                     borderColor: ['white'],
                     data: [5, 3]
@@ -131,7 +132,7 @@
             data: {
                 labels: ['Jan', 'Feb', 'Ma', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
                 datasets: [{
-                    label: 'Total Posts',
+                    label: 'Posts',
                     backgroundColor: 'rgb(51, 153, 255)',
                     borderColor: 'rgb(51, 153, 255)',
                     data: [0, 10, 5, 2, 20, 30, 40, 45, 30, 55, 60, 65]
@@ -157,7 +158,7 @@
                     label: 'New Users',
                     backgroundColor: 'rgb(51, 153, 255)',
                     borderColor: 'rgb(51, 153, 255)',
-                    data: [0, 10, 5, 2, 20, 30, 40, 45, 30, 55, 60, 65]
+                    data: [5, 3, 2, 10, 3, 2, 1, 15, 8, 5, 13, 9]
                 }]
             },
 
@@ -174,12 +175,12 @@
 
             // The data for our dataset
             data: {
-                labels: ['New', 'Old'],
+                labels: ['New', 'Returning'],
                 datasets: [{
-                    label: 'Upcoming Event Posts',
+                    label: 'New vs Returning Users',
                     backgroundColor: ['blue', 'aqua'],
                     borderColor: ['white'],
-                    data: [5, 3]
+                    data: [3, 8]
                 }]
             },
 
@@ -201,7 +202,7 @@
                     label: 'Total Posts',
                     backgroundColor: 'rgb(51, 153, 255)',
                     borderColor: 'rgb(51, 153, 255)',
-                    data: [0, 10, 5, 2, 20, 30, 40, 45, 30, 55, 60, 65]
+                    data: [5, 19, 15, 13, 30, 37, 52, 65, 50, 101, 111, 122]
                 }]
             },
 

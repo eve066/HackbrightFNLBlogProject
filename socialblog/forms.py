@@ -4,6 +4,7 @@ from flask_login import current_user
 from wtforms import StringField, PasswordField, SubmitField, BooleanField, TextAreaField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
 from socialblog.model import User
+#from socialblog import images
 
 
 class RegistrationForm(FlaskForm):
@@ -64,6 +65,8 @@ class UpdateAccountForm(FlaskForm):
 class PostForm(FlaskForm):
     title = StringField('Title', validators=[DataRequired()])
     content = TextAreaField('Content', validators=[DataRequired()])
+    image = FileField('Update Profile Picture', validators=[
+        FileAllowed(['jpg', 'png'])])
     submit = SubmitField('Post')
 
 

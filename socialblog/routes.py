@@ -1,6 +1,7 @@
 import os
 import json
 import secrets
+import urllib.request
 from PIL import Image
 from flask import render_template, url_for, flash, redirect, request, abort
 from socialblog import app, db, bcrypt, mail
@@ -9,6 +10,9 @@ from socialblog.forms import (RegistrationForm, LoginForm,
 from socialblog.model import User, Post
 from flask_login import login_user, current_user, logout_user, login_required
 from flask_mail import Message
+from werkzeug.utils import secure_filename
+
+ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
 
 
 @app.route('/')
@@ -16,7 +20,7 @@ from flask_mail import Message
 def home():
     page = request.args.get('page', 1, type=int)
     posts = Post.query.order_by(
-        Post.date_posted.desc()).paginate(page=page, per_page=5)
+        Post.date_posted.desc()).paginate(page=page, per_page=2)
     return render_template('home.html', posts=posts)
 
 
@@ -28,6 +32,11 @@ def about():
 @app.route('/dashboard')
 def dashboard():
     return render_template('dashboard.html', title='Dashboard')
+
+
+@app.route('/dashboard2')
+def dashboard2():
+    return render_template('dashboard2.html', title='Dashboard2')
 
 
 @app.route("/register", methods=['GET', 'POST'])
@@ -85,6 +94,22 @@ def save_picture(form_picture):
     return picture_fn
 
 
+def save_image(form_image):
+    random_hex = secrets.token_hex(8)
+    _, f_ext = os.path.splitext(form_image.filename)
+    image_fn = random_hex + f_ext
+    image_path = os.path.join(
+        app.root_path, 'static/profile_pics', image_fn)
+    form_image.save(image_path)
+
+    """output_size = (250, 125)
+    i = Image.open(form_picture)
+    i.thumbnail(output_size)
+    i.save(picture_path)"""
+
+    return image_fn
+
+
 @app.route("/account", methods=['GET', 'POST'])
 @login_required
 def account():
@@ -101,10 +126,6 @@ def account():
     elif request.method == 'GET':
         form.username.data = current_user.username
         form.email.data = current_user.email
-    image_file = url_for(
-        'static', filename='profile_pics/' + current_user.image_file)
-    return render_template('account.html', title='Account',
-                           image_file=image_file, form=form)
     image_file = url_for(
         'static', filename='profile_pics/' + current_user.image_file)
     return render_template('account.html', title='Account',
@@ -169,7 +190,7 @@ def user_posts(username):
     user = User.query.filter_by(username=username).first_or_404()
     posts = Post.query.filter_by(author=user)\
         .order_by(Post.date_posted.desc())\
-        .paginate(page=page, per_page=5)
+        .paginate(page=page, per_page=2)
     return render_template('user_posts.html', posts=posts, user=user)
 
 
@@ -221,7 +242,7 @@ def reset_token(token):
 def upcoming_events():
     page = request.args.get('page', 1, type=int)
     posts = Post.query.order_by(
-        Post.date_posted.desc()).paginate(page=page, per_page=5)
+        Post.date_posted.desc()).paginate(page=page, per_page=2)
     return render_template('upcoming_events.html', posts=posts)
 
 
@@ -229,7 +250,7 @@ def upcoming_events():
 def articles():
     page = request.args.get('page', 1, type=int)
     posts = Post.query.order_by(
-        Post.date_posted.desc()).paginate(page=page, per_page=5)
+        Post.date_posted.desc()).paginate(page=page, per_page=2)
     return render_template('articles.html', posts=posts)
 
 
@@ -246,3 +267,39 @@ def debug_add_post():
             db.session.commit()
     flash("Posts have been added!", "success")
     return redirect(url_for('home'))
+
+
+"""def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+
+@app.route('/post/new')
+def upload_form():
+    return render_template('upload.html')
+
+
+@app.route('/post/new', methods=['POST'])
+def upload_image():
+
+    if 'file' not in request.files:
+        flash('No file part')
+        return redirect(request.url)
+    file = request.files['file']
+    if file.filename == '':
+        flash('No image selected for uploading')
+        return redirect(request.url)
+    if file and allowed_file(file.filename):
+        filename = secure_filename(file.filename)
+        file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+        #print('upload_image filename: ' + filename)
+        flash('Image successfully uploaded and displayed')
+        return render_template('upload.html', filename=filename)
+    else:
+        flash('Allowed image types are -> png, jpg, jpeg, gif')
+        return redirect(request.url)
+
+
+@app.route('/display/<filename>')
+def display_image(filename):
+    #print('display_image filename: ' + filename)
+    return redirect(url_for('static', filename='uploads/' + filename), code=301)"""

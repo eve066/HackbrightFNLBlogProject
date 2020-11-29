@@ -31,6 +31,13 @@ class User(db.Model, UserMixin):
             return None
         return User.query.get(user_id)
 
+    def __init_(self, username, email, image_file, password, posts):
+        self.username = username
+        self.email = email
+        self.image_file = image_file
+        self.password = password
+        self.posts = posts
+
     def __repr__(self):
         return f"User('{self.username}', '{self.email}', '{self.image_file}')"
 
@@ -41,7 +48,15 @@ class Post(db.Model):
     date_posted = db.Column(db.DateTime, nullable=False,
                             default=datetime.utcnow)
     content = db.Column(db.Text, nullable=False)
+    image = db.Column(db.String, default=None, nullable=True)
+    #image_url = db.Column(db.String, default=None, nullable=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
+    def __init_(self, title, date_posted, content, image):
+        self.title = title
+        self.date_posted = date_posted
+        self.content = content
+        self.image = image
+
     def __repr__(self):
-        return f"Post('{self.title}', '{self.date_posted}')"
+        return f"Post('{self.title}', '{self.date_posted}', )"

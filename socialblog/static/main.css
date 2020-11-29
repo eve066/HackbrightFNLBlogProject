@@ -1,13 +1,21 @@
 body {
-  background: #00001a;
-  color: #333333;
+  background-color: #ffffff;
+  background-image: url(/static/bwpaws.jpg);
+  background-size: cover;
+  background-position: center;
+  /*background: #00001a;
+  color: #333333;*/
   margin-top: 5rem;
+  background-repeat: no-repeat;
 }
 
 h1, h2, h3, h4, h5, h6 {
   color: #444444;
 }
 
+.bg-light { 
+  padding: 5px 20px;
+}
 
 .bg-steel {
   background-color: #ff751a;
@@ -25,10 +33,15 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 500;
 }
 
+.fixed-top {
+  vertical-align: middle;
+}
+
+
 .content-section {
   background: #ffffff;
   padding: 10px 20px;
-  border: 3px solid #dddddd;
+  border: 3px solid #cccccc;
   border-radius: 10px;
   margin-top: 25px;
   margin-bottom: 25px;
