@@ -1,0 +1,53 @@
+[
+    {
+        "title": "Dogs are The Best",
+        "content": "The connection between humans and dogs has been long acknowledged as one of the strongest bonds around - even if, at some point, they will inevitably try to steal a sausage off your plate. Here's why we think dogs are the best pets ever: 1) They’re incredibly loyal -  It’s no wonder a 40% of dog owners recently admitted they tell their dogs everything – we know we can trust them to be there for us! 2) Their positive attitude is infectious. Dogs get so excited over the simplest things – sticks, discarded food wrappers, a trip to the corner shop – that they make you appreciate the little things in life. No one can be sad with a waggy-tailed friend around. 3) They’re good at cuddles.Not much in life that beats a night on the sofa, snuggled up with a cup of tea in hand and your arm round a snoozing pooch.",
+        "user_id": 1,
+        "image": "perla2.jpg"
+    },
+    {
+        "title": "Meet Max",
+        "content": "Max is my 5 year-old French Bulldog. He enjoys playing and entertaining our family, as well as cuddling and snoozing with me. Max is amiable, sweet, companionable, and willing to please.",
+        "user_id": 2
+    },
+    {
+        "title": "This is Perla",
+        "content": "She has a great personality and I love her adorable eyes. Perla means jewel in Spanish and I named her this way because of her white and long fluffy and very soft coat. Her eyes are big and captivating and she always greets me with much love and attention.",
+        "user_id": 1
+    },
+    {
+        "title": "Cats are Better",
+        "content": "When deciding to get a pet, it may be a difficult decision about whether to choose a cat or a dog. Although they are both furry friends, the two types of animals are very different from each other. Cats have many favorable traits, including their ease of care, cleanliness, and adorable antics, making them a wonderful pet for any family. Cats don't take up much space, they're more affordable and are perfectly content indoors.",
+        "user_id": 2
+    },
+    {
+        "title": "Silvester, My Sister's Cat",
+        "content": "Silvester is heavily boned, well-balanced cat with a sweet expression and soft, round lines. This cat has large round eyes set wide apart in a large round head. The long thick coat softens the lines of the cat and accentuates the roundness in appearance.",
+        "user_id": 2
+    },
+    {
+        "title": "How to Introduce a Dog To a Cat?",
+        "content": "Some dogs do fine living with cats; others simply cannot live safely with felines. Sometimes, a dog can live with certain cats (depending on their age, temperament and activity level), but not others. Even if your dog has successfully lived with cats in the past, it is important to remember that each dog and each cat is an individual and therefore each introduction is different",
+        "user_id": 1
+    },
+    {
+        "title": "I Love This Cat!",
+        "content": "Silvester came over today. I told my sister I would take care of him while she ran her errands. Max, my French Bulldog, gets a little jealous when Silvester comes over but gets used to him very quickly. I love to see them laying together next to me by the fire, it's always fun to see them looking at each other.",
+        "user_id": 2
+    },
+    {
+        "title": "There's a Reason We Call Dogs Man's Best Friend",
+        "content": "Dogs. There's a reason we call them man's best friend. We can learn so many things from a dog's behavior, personality, demeanor, resiliency, and most importantly, the willingness to provide their family members with unconditional love, loyalty, and companionship down to their very last breath.",
+        "user_id": 1
+    },
+    {
+        "title": "Taking Max to the Park?",
+        "content": "Well, as a new French bulldog  pet owner and after hearing about all the parvo symptoms and end results from my veterinarian, I was absolutely sure I don’t want to take my new frenchie puppy for a walk in the dog park or even in the regular park until after all the important vaccinations were completed.",
+        "user_id": 2
+    },
+    {
+        "title": "How Dogs and Cats in the Workplace Boosts Productivity",
+        "content": "Nowadays, it seems it's not such an outlandish idea to have a pet in the office — there are actually quite a few advantages. For example, a few years ago, research by Virginia Commonwealth University showed that people experience less stress when a dog is around. Researchers took saliva samples from factory employees and looked at how much of the stress hormone cortisol was in it. The results showed that only the employees who had had a cat or dog in their vicinity had low cortisol levels by the end of the day.",
+        "user_id": 1
+    }
+]

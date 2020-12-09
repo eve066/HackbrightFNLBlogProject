@@ -12,6 +12,11 @@
         </div>
         <h2><a class="article-title" href="{{ url_for('post', post_id=post.id) }}">{{ post.title }}</a></h2>
         <p class="article-content">{{ post.content }}</p>
+        <img class="rounded-corners mx-auto d-block article-img2"
+            src="{{ url_for('static', filename='profile_pics/' + post.image) }}"
+            onerror="this.onerror=null;this.src='../static/profile_pics/default.jpg';" />
+
+
     </div>
 </article>
 {% endfor %}

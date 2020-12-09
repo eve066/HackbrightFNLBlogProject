@@ -137,8 +137,12 @@ def account():
 def new_post():
     form = PostForm()
     if form.validate_on_submit():
+        if form.image.data:
+            print("we have form image data")
+            picture_file2 = save_image(form.image.data)
+            print(picture_file2)
         post = Post(title=form.title.data,
-                    content=form.content.data, author=current_user)
+                    content=form.content.data, author=current_user, image=picture_file2)
         db.session.add(post)
         db.session.commit()
         flash('Your post has been created!', 'success')
@@ -160,6 +164,8 @@ def update_post(post_id):
         abort(403)
     form = PostForm()
     if form.validate_on_submit():
+        picture_file2 = save_image(form.image.data)
+        post.image = picture_file2
         post.title = form.title.data
         post.content = form.content.data
         db.session.commit()
@@ -256,13 +262,15 @@ def articles():
 
 @app.route("/debug_add_posts")
 def debug_add_post():
-    json_path = os.path.join(app.root_path, 'static', 'posts.json')
+    json_path = os.path.join(app.root_path, 'static', 'revposts.json')
     with open(json_path) as json_file:
         data = json.load(json_file)
         for post_data in data:
             author = User.query.get(post_data['user_id'])
             post = Post(title=post_data['title'],
                         content=post_data['content'], author=author)
+            if 'image' in post_data:
+                post.image = post_data['image']
             db.session.add(post)
             db.session.commit()
     flash("Posts have been added!", "success")
